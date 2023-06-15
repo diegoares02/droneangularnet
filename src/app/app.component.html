@@ -1,61 +1,46 @@
-<div class="container-fluid text-md-center m-2">
-  <h1 id="tableLabel">Drone Delivery Service</h1>
-</div>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Drone service Provider</a>
+    <div class="d-flex" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button type="button" class="btn" (click)="openLocationModal()" data-bs-toggle="modal" data-bs-target="#locationCreation">Location</button>
+        </li>
+        <li class="nav-item">
+          <button type="button" class="btn" (click)="openDroneModal()" data-bs-toggle="modal" data-bs-target="#droneCreation">Drone</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<drone-create-root></drone-create-root>
+<location-create-root></location-create-root>
 
 <div class="container m-5">
   <div class="row">
-    <div class="col-7">
-      <table *ngIf="forecasts" class="table">
+    <div class="col-8">
+      <table class="table table-dark">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            <th>Drone</th>
+            <th>Trip</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let forecast of forecasts">
-            <td>{{ forecast.date }}</td>
-            <td>{{ forecast.temperatureC }}</td>
-            <td>{{ forecast.temperatureF }}</td>
-            <td>{{ forecast.summary }}</td>
+          <tr *ngFor="let droneLocation of droneLocations">
+            <td>{{ droneLocation.droneName }}</td>
+            <td>{{ droneLocation.trips }}</td>
           </tr>
         </tbody>
       </table>
     </div>
     <div class="col">
       <div class="row">
-        <table class="table-active">
-          <thead>
-            <tr>
-              <th>Drone Name</th>
-              <th>Max Weight</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Drone Name</td>
-              <td>Max Weight</td>
-            </tr>
-          </tbody>
-        </table>
+        <drone-root></drone-root>
       </div>
       <div class="row">
-        <table class="table-active">
-          <thead>
-            <tr>
-              <th>Location Name</th>
-              <th>Package Weight</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Location Name</td>
-              <td>Package Weight</td>
-            </tr>
-          </tbody>
-        </table>
+        <location-root></location-root>
       </div>
     </div>
   </div>

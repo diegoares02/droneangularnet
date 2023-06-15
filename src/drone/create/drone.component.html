@@ -1,0 +1,27 @@
+<div class="modal fade" id="droneCreation" tabindex="-1" aria-labelledby="droneCreationLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="droneCreationLabel">Add drone</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="droneForm" [formGroup]="registerForm">
+          <div class="mb-3">
+            <label for="id_name" class="form-label">Name:</label>
+            <input formControlName="name" [class.is-invalid]="name.touched && name.invalid"
+                   type="text" class="form-control" id="id_name">
+          </div>
+          <div class="mb-3">
+            <label for="id_maxWeight" class="form-label">Max Weight:</label>
+            <input formControlName="maxWeight" [class.is-invalid]="maxWeight.touched && maxWeight.invalid"
+                   type="text" class="form-control" id="id_maxWeight">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success" (click)="Create()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

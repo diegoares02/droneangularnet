@@ -1,26 +1,40 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+declare var window: any;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public forecasts?: WeatherForecast[];
+  public locationModal: any;
+  public droneModal: any;
+  public droneLocations?: DroneLocation[];
 
   constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-      this.forecasts = result;
+    http.get<DroneLocation[]>('/dronelocationprocess').subscribe(result => {
+      this.droneLocations = result;
     }, error => console.error(error));
   }
 
-  title = 'angularapp';
+  ngOnInit(): void {
+    this.locationModal = new window.bootstrap.Modal(
+      document.getElementById('locationCreation')
+    );
+    this.droneModal = new window.bootstrap.Modal(
+      document.getElementById('droneCreation')
+    );
+  }
+
+  openLocationModal() {
+    this.locationModal.show();
+  }
+  openDroneModal() {
+    this.droneModal.show();
+  }
 }
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
+interface DroneLocation {
+  droneName: string
+  trips: string
 }
